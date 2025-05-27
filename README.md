@@ -1,7 +1,7 @@
 # P0PCorNS
-**P0PCorNS (<ins>P</ins>erturbation to <ins>0</ins> to <ins>P</ins>redict <ins>Cor</ins>related <ins>N</ins>etwork <ins>S</ins>tability)** performs informative gene knockouts (One gene was *in silico* knocked out each time ), and uses [BNW (Ziebarth et al. Bioinformatics, 2013.)](https://academic.oup.com/bioinformatics/article/29/21/2801/195868) to generate the Bayesian Networks, then calculates the **Jensen-Shannon divergence (JSD)** between networks. Finally, P0PCorNS can provide a order list of gene impacts.
+**P0PCorNS (<ins>P</ins>erturbation to <ins>0</ins> to <ins>P</ins>redict <ins>Cor</ins>related <ins>N</ins>etwork <ins>S</ins>tability)** performs informative gene knockouts (One gene was *in silico* knocked out each time ), and uses [BNW (Ziebarth et al. Bioinformatics, 2013.)](https://academic.oup.com/bioinformatics/article/29/21/2801/195868) to generate the Bayesian Networks, then calculates the **Jensen-Shannon divergence (JSD)** between networks. Finally, P0PCorNS can provide an ordered list of gene impacts.
 
-A gene that exhibits a higher informative impact would play an more importent role in in the gene regulatory networks (potentially function more upstream in a linear regulatory order or be the hub gene) , and will be ranked higher for gene manipulation verification experiments. 
+A gene with a higher informative impact would play a more important role in the gene regulatory networks (potentially function more upstream in a linear regulatory order or be the hub gene) , and will be ranked higher for gene manipulation verification experiments. 
 ## INSTALLATION
 
 P0PCorNS has been tested in **Red Hat Enterprise Linux release 8.8** and is based on **Python 3**.
@@ -20,7 +20,7 @@ You can also compare your output to the results in the directory **'example/outp
 
 **demo_short.csv** contains the foldchange information of 4 genes.
 
-This file is just for quick test. The running time of 4 genes and 3 stages in both **Gene&Stage** mode and **Gene_only** mode is less than 1 min in the testing server.
+This file is just for a quick test. The running time of 4 genes and 3 stages in both **Gene&Stage** mode and **Gene_only** mode is less than 1 min on the testing server.
 ```
 st01,st12,st23,rel,fmf,pp1,pna
 1,1,1,1,1,1,1
@@ -28,13 +28,13 @@ st01,st12,st23,rel,fmf,pp1,pna
 1,2,3,1.976248755,11.80867992,1.088135298,1.256936979
 1,2,3,2.218305097,10.73544157,1.17096892,2.582973777
 ```
-The first row are variable names.
+The first row is variable names.
 
 The second row describes the type of each variable: 1 is for each continuous variable.
 
-The remaining rows are the foldchange information of the variable (Stage specific expression data collected from real experiments).
+The remaining rows are the foldchange information of the variable (stage-specific expression data collected from real experiments).
 
-Note: P0PCorNS also provide a **demo_long.csv** as an example of more complicated cases.
+Note: P0PCorNS also provides a **demo_long.csv** as an example of more complicated cases.
 
 The **demo_long.csv** contains the foldchange information of 11 genes.
 
@@ -52,10 +52,10 @@ st01,st12,st23,st34,st45,rel,fmf,pp1,pna,c837,adv,asm,vad,MT1,MT2,bk1
 ### mode
 - **Gene&Stage mode**
 
-**Gene&Stage** mode will use the stage information and foldchange information of genes to generate the bayesian network.
+**Gene&Stage** mode will use the stage information and foldchange information of genes to generate the Bayesian network.
 - **Gene_only mode**
 
-**Gene_only** mode will only use the foldchange information of genes to generate the bayesian network.
+**Gene_only** mode will only use the foldchange information of genes to generate the Bayesian network.
 
 That is, for the **Gene_only** mode, P0PCorNS will only use the gene columns as the input, like the following:
 ```
@@ -68,7 +68,7 @@ rel,fmf,pp1,pna
 
 
 ### optional parameters
-`[k]` is one of the parameters needed for runnning BNW, which set the number of high scoring networks to include in model averaging. The bigger k is, the longer the running time will be. Here, we set **k = 20** as the default.
+`[k]` is one of the parameters needed for running BNW, which sets the number of high-scoring networks to include in model averaging. The bigger k is, the longer the running time will be. Here, we set **k = 20** as the default.
 
 ## OUTPUT
 P0PCorNS will generate the JSD matrix file (`inputPrefix_jsd_matrix.csv`) and the list file of gene-JSD pairs (that is, `inputPrefix_rearranged_jsd_matrix.csv`), as well as the corresponding files for **Gene_only** mode(`inputPrefix_jsd_matrix-GeneOnly.csv` and `inputPrefix_rearranged_jsd_matrix-GeneOnly.csv`)
